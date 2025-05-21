@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Register</title>
+    <style>
+        .error-message {
+            color: red;
+        }
+        .success-message {
+            color: green;
+        }
+    </style>
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+            } else {
+                passwordInput.type = 'password';
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .label {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bolder;
+            color: black;
+            background-color: lightgrey;
+            border: none;
+            border-radius: 5px;
+            text-decoration: black;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .form-group label {
+            width: 150px; 
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 250px;
+            padding: 5px;
+        }
+        .form-group select {
+            width: 250px;
+            padding: 5px;
+            font-family: inherit;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+          }
+        .form-container {
+          max-width: 500px;
+          margin: 0 auto;
+          text-align: left;
+          padding: 20px;
+          background-color: white;
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Register</h1>
+
+
+    {% if messages %}
+      <ul>
+        {% for message in messages %}
+          <li class="success-message">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <div class="form-container">
+        <form method="post" action="{% url 'register' %}">
+            <div class="form-group">
+                <label class="label">First Name:</label>
+                <input type="text" name="firstname" required><br>
+            </div>
+
+            <div class="form-group">
+                <label class="label">Last Name:</label>
+                <input type="text" name="lastname" required><br>
+            </div>
+
+            <div class="form-group">
+                <label class="label">Age:</label>
+                <input type="number" name="age" required><br>
+            </div>
+
+            <div class="form-group">   
+                <label class="label">Username:</label>
+                <input type="text" name="username" required><br>
+            </div>
+
+            <div class="form-group">        
+                <label class="label">Password:</label>
+                <input type="password" name="password" id="password"
+                    required
+                    autocomplete="off"
+                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&amp;]).{8,}$"
+                    title="Password must include at least 1 uppercase letter, 1 lowercase letter, 1 number, 1 special character, and be at least 8 characters long.">
+                <input type="checkbox" onclick="togglePasswordVisibility()"> Show Password<br><br>
+            </div>
+
+            <div class="form-group">
+                    
+                <label class="label">Security Question:</label>
+                <select name="security_question" required>
+                    <option value="">Select a question</option>
+                    <option value="What is your mother's maiden name?">What is your mother's maiden name?</option>
+                    <option value="What is your favourite sport?">What is your favourite sport?</option>
+                    <option value="What was your first pet's name?">What was your first pet's name?</option>
+                    <option value="What is your favourite movie?">What is your favourite movie?</option>
+                    <option value="What is your place of birth?">What is your place of birth?</option>
+                </select><br>
+            </div>
+
+            <div class="form-group">
+                    
+                <label class="label">Answer:</label>
+                <input type="text" name="security_answer" required><br><br>
+            </div>
+
+            <div style="text-align: center;">
+                <input type="submit" value="Register" class="button">
+            </div>
+        </form>
+    </div>
+
+    <p>Already have an account? <a href="{% url 'login' %}" class="button">Login here</a>.</p>
+</body>
+</html>

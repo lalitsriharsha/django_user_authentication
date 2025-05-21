@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .label {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bolder;
+            color: black;
+            background-color: lightgrey;
+            border: none;
+            border-radius: 5px;
+            text-decoration: black;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Login</h1>
+
+
+    {% if messages %}
+      <ul>
+        {% for message in messages %}
+          <li style="color: green;">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    
+
+    <form method="post" action="{% url 'login' %}">
+        <label class="label">Username:</label>
+        <input type="text" name="username" required><br>
+
+        <label class="label">Password:</label>
+        <input type="password" name="password" required><br>
+
+        <input type="submit" value="Login" class="button">
+    </form>
+    
+    <p>Don't have an account? <a href="{% url 'register' %}" class="button">Register here</a>.</p>
+    <p>Can't remember your password?<a href="{% url 'forgot_password' %}" class="button">Reset password?</a></p>
+    
+</body>
+</html>
