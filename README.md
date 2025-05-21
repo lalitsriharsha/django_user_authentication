@@ -65,9 +65,13 @@ This is a user authentication web application built with Django and integrated w
 
 ## Installations
 
-Install the dependencies
-	pip install -r requirements.txt
+## Installation
 
+Install the required dependencies by running:
+
+```bash
+pip install -r requirements.txt
+```
 ## Manual Testing
 •	Registering a new user
 •	Logging in with the valid/invalid credentials
